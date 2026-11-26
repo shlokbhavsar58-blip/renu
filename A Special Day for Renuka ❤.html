@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A Special Day for Renuka ❤️</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.js"></script>
+<style>
+:root{--gold:#f6d27a;--pink:#ff7eb6;--lav:#c4b5fd;--pur:#7c3aed;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font-family:'Poppins',system-ui,sans-serif;color:#fff;background:linear-gradient(160deg,#2a1055,#5b21b6 45%,#be3f8f 100%);background-attachment:fixed;min-height:100vh;overflow-x:hidden}
+.serif{font-family:'Playfair Display',Georgia,serif}.script{font-family:'Dancing Script',cursive}
+.gold{background:linear-gradient(90deg,#fff3c4,#f6d27a,#ffb3d9,#f6d27a);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200%;animation:sh 5s linear infinite}
+@keyframes sh{to{background-position:200%}}
+.glass{background:rgba(255,255,255,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.28);box-shadow:0 10px 40px rgba(40,10,80,.35)}
+.btn{background:linear-gradient(135deg,#ff7eb6,#a78bfa);padding:.9rem 2rem;border-radius:999px;font-weight:500;box-shadow:0 8px 30px rgba(255,126,182,.5);transition:transform .25s,box-shadow .25s;border:1px solid rgba(255,255,255,.4);cursor:pointer;color:#fff}
+.btn:hover{transform:translateY(-3px) scale(1.05)}.btn:active{transform:scale(.96)}
+.fl{position:fixed;bottom:-60px;pointer-events:none;z-index:0;animation:rise linear infinite;opacity:.8}
+@keyframes rise{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(-120vh) rotate(360deg)}}
+.rv{opacity:0;transform:translateY(40px);transition:all .9s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+.flame{transform-origin:50% 100%;animation:fk .35s ease-in-out infinite alternate;filter:drop-shadow(0 0 8px #ffd35a)}
+@keyframes fk{from{transform:scale(1,.9) rotate(-3deg)}to{transform:scale(.9,1.1) rotate(3deg)}}
+.bob{animation:bob 3.5s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-12px)}}
+.balloon{position:absolute;width:46px;height:58px;border-radius:50% 50% 48% 48%;animation:bob 4s ease-in-out infinite;box-shadow:inset -8px -8px 14px rgba(0,0,0,.15),inset 6px 6px 10px rgba(255,255,255,.4)}
+.balloon::after{content:"";position:absolute;left:50%;top:100%;width:1px;height:70px;background:rgba(255,255,255,.6)}
+.cf{position:fixed;top:-10px;width:10px;height:14px;z-index:60;pointer-events:none;animation:cf 2.8s ease-out forwards}
+@keyframes cf{to{transform:translate(var(--x),105vh) rotate(var(--r));opacity:.9}}
+.hp{position:fixed;bottom:0;z-index:60;pointer-events:none;animation:hp 3s ease-out forwards}
+@keyframes hp{to{transform:translateY(-90vh) scale(1.6);opacity:0}}
+.env{position:relative;width:min(300px,80vw);height:200px;margin:auto}
+.flap{position:absolute;top:0;left:0;width:100%;height:100px;transform-origin:top;transition:transform .8s;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(#f9a8d4,#e879a9);z-index:3}
+.open .flap{transform:rotateX(180deg);z-index:0}
+.cur::after{content:"|";animation:bl 1s infinite}@keyframes bl{50%{opacity:0}}
+.wish{animation:pop .8s cubic-bezier(.2,1.4,.4,1)}@keyframes pop{from{transform:scale(.3);opacity:0}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const {useState,useEffect,useRef,useMemo}=React;const html=htm.bind(React.createElement);
+const COL=['#ff7eb6','#f6d27a','#c4b5fd','#fff','#a78bfa','#ffb3d9'];
+const EM=['❤️','💖','✨','⭐','🌸','💜','🌷','💫'];
+
+function Floaters(){
+  const items=useMemo(()=>Array.from({length:26},(_,i)=>({e:EM[i%EM.length],l:Math.random()*100,s:14+Math.random()*22,d:12+Math.random()*16,dl:-Math.random()*20})),[]);
+  return html`<div aria-hidden="true">${items.map((x,i)=>html`<span key=${i} className="fl" style=${{left:x.l+'%',fontSize:x.s,animationDuration:x.d+'s',animationDelay:x.dl+'s'}}>${x.e}</span>`)}</div>`;
+}
+function Reveal({children,className=''}){
+  const r=useRef();const [v,setV]=useState(false);
+  useEffect(()=>{const o=new IntersectionObserver(([e])=>{if(e.isIntersecting){setV(true);o.disconnect()}},{threshold:.15});o.observe(r.current);return()=>o.disconnect()},[]);
+  return html`<section ref=${r} className=${'rv '+(v?'in ':'')+className}>${children}</section>`;
+}
+function Cake({lit,toggle}){
+  const xs=[110,150,190];
+  return html`<svg viewBox="0 0 300 280" className="w-72 sm:w-80 mx-auto bob" role="img" aria-label="Birthday cake">
+    <defs><linearGradient id="t1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f9a8d4"/><stop offset=".5" stop-color="#fbcfe8"/><stop offset="1" stop-color="#ec7fb4"/></linearGradient>
+    <linearGradient id="t2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c4b5fd"/><stop offset=".5" stop-color="#ddd6fe"/><stop offset="1" stop-color="#9f86f5"/></linearGradient></defs>
+    <ellipse cx="150" cy="262" rx="125" ry="14" fill="#00000040"/>
+    <rect x="35" y="190" width="230" height="70" rx="16" fill="url(#t2)"/>
+    <path d="M35 205q15 22 30 0t30 0 30 0 30 0 30 0 30 0 30 0 15 0v-12h-230z" fill="#fff"/>
+    <rect x="70" y="125" width="160" height="68" rx="14" fill="url(#t1)"/>
+    <path d="M70 140q13 20 27 0t27 0 27 0 27 0 27 0 0-12h-135z" fill="#fff"/>
+    <rect x="102" y="88" width="96" height="40" rx="12" fill="url(#t2)"/>
+    <path d="M102 100q12 16 24 0t24 0 24 0 24 0v-10h-96z" fill="#fff"/>
+    ${[90,150,210].map((x,i)=>html`<circle key=${i} cx=${x} cy="172" r="5" fill="#f6d27a"/>`)}
+    ${xs.map((x,i)=>html`<g key=${i} onClick=${()=>toggle(i)} style=${{cursor:'pointer'}} role="button" aria-label=${'Candle '+(i+1)}>
+      <rect x=${x-5} y="52" width="10" height="38" rx="3" fill=${['#ff7eb6','#f6d27a','#a78bfa'][i]}/>
+      <rect x=${x-5} y="62" width="10" height="5" fill="#fff8"/>
+      <rect x=${x-16} y="30" width="32" height="60" fill="transparent"/>
+      ${lit[i]&&html`<g className="flame"><ellipse cx=${x} cy="40" rx="7" ry="12" fill="#ffb02e"/><ellipse cx=${x} cy="43" rx="3.5" ry="7" fill="#fff6b0"/></g>`}
+    </g>`)}
+  </svg>`;
+}
+const QUOTES=["A sister is a forever friend.","Different personalities, one beautiful bond.","No matter where life takes us, we will always be connected.","A sister like you is a blessing forever.","Your happiness is my favourite celebration."];
+const LETTER="My dearest Renuka,\n\nI never really tell you this, but you make my world brighter just by being in it. Every silly fight, every inside joke, every late-night chat has become a treasure I carry with me.\n\nThank you for being my partner in laughter and my safe place when life gets heavy. Whatever tomorrow brings, I'll always be right here, cheering for you.\n\nHappy Birthday, my sweet sister. I love you more than words can say. ❤️\n\nForever yours,\nYour brother";
+const SEQ=[[261.6,.75],[261.6,.25],[293.7,1],[261.6,1],[349.2,1],[329.6,2],[261.6,.75],[261.6,.25],[293.7,1],[261.6,1],[392,1],[349.2,2],[261.6,.75],[261.6,.25],[523.3,1],[440,1],[349.2,1],[329.6,1],[293.7,2],[466.2,.75],[466.2,.25],[440,1],[349.2,1],[392,1],[349.2,3]];
+
+function App(){
+  const [open,setOpen]=useState(false);
+  const [lit,setLit]=useState([true,true,true]);
+  const [wish,setWish]=useState(false);
+  const [bits,setBits]=useState([]);
+  const [env,setEnv]=useState(false);
+  const [typed,setTyped]=useState('');
+  const [music,setMusic]=useState(false);
+  const au=useRef({});const top=useRef();
+
+  const burst=(n=70)=>{
+    const id=Date.now()+Math.random();
+    const b=Array.from({length:n},(_,i)=>({id:id+i,l:Math.random()*100,x:(Math.random()-.5)*300+'px',r:Math.random()*900+'deg',c:COL[i%6],h:i%7===0,d:Math.random()*.5}));
+    setBits(p=>[...p,...b]);setTimeout(()=>setBits(p=>p.filter(x=>!b.includes(x))),3600);
+  };
+  const toggle=i=>setLit(l=>l.map((v,j)=>j===i?!v:v));
+  const allOut=!lit.some(Boolean);
+  useEffect(()=>{if(allOut){burst(50)}},[allOut]);
+
+  const openGift=()=>{setOpen(true);burst(90);window.scrollTo(0,0)};
+  const makeWish=()=>{setWish(true);setLit([true,true,true]);burst(100);setTimeout(()=>setWish(false),5000)};
+  const openLetter=()=>{if(env)return;setEnv(true);let i=0;setTimeout(()=>{const t=setInterval(()=>{i++;setTyped(LETTER.slice(0,i));if(i>=LETTER.length)clearInterval(t)},35)},900)};
+
+  const playNote=(ctx,f,t,d)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.15,t+.03);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g).connect(ctx.destination);o.start(t);o.stop(t+d+.05)};
+  const loop=()=>{const a=au.current;if(!a.on)return;let t=a.ctx.currentTime+.1;SEQ.forEach(([f,b])=>{playNote(a.ctx,f,t,b*.5);t+=b*.5});a.timer=setTimeout(loop,(t-a.ctx.currentTime+.8)*1000)};
+  const toggleMusic=()=>{
+    const a=au.current;
+    if(music){a.on=false;clearTimeout(a.timer);setMusic(false)}
+    else{try{a.ctx=a.ctx||new (window.AudioContext||window.webkitAudioContext)();a.ctx.resume();a.on=true;loop();setMusic(true)}catch(e){}}
+  };
+  const again=()=>{window.scrollTo({top:0,behavior:'smooth'});setLit([true,true,true]);setEnv(false);setTyped('');burst(120);setTimeout(()=>burst(80),600)};
+
+  const Fx=html`<div>${bits.map(b=>b.h?html`<span key=${b.id} className="hp" style=${{left:b.l+'%',animationDelay:b.d+'s',fontSize:22}}>❤️</span>`:html`<span key=${b.id} className="cf" style=${{left:b.l+'%',background:b.c,'--x':b.x,'--r':b.r,animationDelay:b.d+'s',borderRadius:2}}/>`)}</div>`;
+  const Music=html`<button onClick=${toggleMusic} aria-label="Toggle music" className="glass fixed right-4 z-50 rounded-full px-4 py-2 text-sm" style=${{top:'calc(env(safe-area-inset-top,0px) + 12px)'}}>${music?'⏸ Pause':'🎵 Play'} music</button>`;
+
+  if(!open) return html`<main className="relative min-h-screen flex items-center justify-center p-6 overflow-hidden">
+    <${Floaters}/>${Fx}${Music}
+    <div className="glass relative z-10 rounded-[2rem] p-8 sm:p-14 text-center max-w-xl wish">
+      <div className="text-6xl bob mb-4">🎁</div>
+      <p className="text-xs tracking-[.35em] uppercase text-pink-200 mb-3">A Special Day for Renuka ❤️</p>
+      <h1 className="serif text-4xl sm:text-6xl font-extrabold gold mb-5">Hey Renuka! ❤️</h1>
+      <p className="text-lg text-purple-100 font-light mb-9">Someone has prepared a little surprise just for you...</p>
+      <button className="btn text-lg" onClick=${openGift}>Open Your Gift 🎁</button>
+    </div></main>`;
+
+  return html`<div className="relative" ref=${top}>
+    <${Floaters}/>${Fx}${Music}
+    <main className="relative z-10 max-w-3xl mx-auto px-5 pb-16">
+
+      <section className="min-h-screen flex flex-col items-center justify-center text-center pt-16 relative">
+        <div className="balloon" style=${{left:'4%',top:'18%',background:'#ff7eb6'}}/>
+        <div className="balloon" style=${{right:'6%',top:'12%',background:'#c4b5fd',animationDelay:'-1s'}}/>
+        <div className="balloon" style=${{left:'12%',bottom:'14%',background:'#f6d27a',animationDelay:'-2s'}}/>
+        <div className="balloon" style=${{right:'10%',bottom:'20%',background:'#a78bfa',animationDelay:'-.5s'}}/>
+        <p className="text-xs tracking-[.35em] uppercase text-pink-200 mb-3">A Special Day for Renuka ❤️</p>
+        <h1 className="serif text-4xl sm:text-6xl font-extrabold gold leading-tight">HAPPY BIRTHDAY<br/>RENUKA 🎂</h1>
+        <p className="script text-3xl text-yellow-100 mt-4 mb-6">Today is all about YOU!</p>
+        <div className="relative"><${Cake} lit=${[true,true,true]} toggle=${()=>burst(40)}/></div>
+        <p className="mt-6 text-purple-100 text-sm animate-pulse">Scroll down for more ↓</p>
+      </section>
+
+      <${Reveal} className="py-16">
+        <div className="glass rounded-3xl p-7 sm:p-12">
+          <h2 className="script text-4xl text-yellow-100 mb-6">Dear Renuka ❤️,</h2>
+          <div className="space-y-5 text-lg font-light leading-relaxed text-purple-50">
+            <p>You are not just my sister, you are one of the most beautiful parts of my life. Our little fights, funny moments and endless memories make our bond special.</p>
+            <p>I may not say it every day, but I am lucky to have you as my sister.</p>
+            <p>May every dream of yours come true. May your life always be full of happiness, success and beautiful surprises.</p>
+            <p>Keep smiling and keep shining. You deserve all the happiness in the world.</p>
+          </div>
+          <p className="script text-3xl text-pink-200 mt-8 text-right">Lots of love from your brother! ❤️</p>
+        </div>
+      <//>
+
+      <${Reveal} className="py-12">
+        <h2 className="serif text-3xl sm:text-4xl text-center gold mb-8">Little Truths ✨</h2>
+        <div className="grid gap-4 sm:grid-cols-2">
+          ${QUOTES.map((q,i)=>html`<div key=${i} onClick=${()=>burst(25)} className=${'glass rounded-2xl p-6 text-center cursor-pointer transition hover:-translate-y-2 hover:rotate-1 '+(i===4?'sm:col-span-2':'')}>
+            <div className="text-2xl mb-2">${['🌸','💜','⭐','👑','🎉'][i]}</div>
+            <p className="script text-2xl sm:text-3xl text-yellow-50">“${q}”</p></div>`)}
+        </div>
+      <//>
+
+      <${Reveal} className="py-16 text-center">
+        <h2 className="serif text-3xl sm:text-4xl gold mb-8">A Secret Letter 💌</h2>
+        <div className=${'env '+(env?'open':'')}>
+          <div className="absolute inset-0 rounded-xl" style=${{background:'linear-gradient(#e879a9,#be3f8f)',boxShadow:'0 15px 40px rgba(0,0,0,.35)'}}/>
+          <div className="flap"/>
+          <div className="absolute text-4xl" style=${{left:'50%',top:'88px',transform:'translateX(-50%)',zIndex:4,opacity:env?0:1,transition:'opacity .4s'}}>❤️</div>
+        </div>
+        ${!env&&html`<button className="btn mt-10" onClick=${openLetter}>Open My Letter 💌</button>`}
+        ${env&&html`<div className="glass rounded-3xl p-6 sm:p-10 mt-10 text-left wish" style=${{background:'rgba(255,248,235,.92)',color:'#4a1d6e'}}>
+          <p className=${'script text-2xl sm:text-3xl leading-relaxed whitespace-pre-wrap '+(typed.length<LETTER.length?'cur':'')}>${typed}</p></div>`}
+      <//>
+
+      <${Reveal} className="py-16 text-center">
+        <h2 className="serif text-3xl sm:text-4xl gold mb-2">Make It Magical ✨</h2>
+        <p className="text-purple-100 font-light mb-6">Tap the candles to blow them out — or make a wish!</p>
+        <${Cake} lit=${lit} toggle=${toggle}/>
+        <div className="min-h-[5rem] mt-6">
+          ${wish?html`<p className="script text-3xl text-yellow-100 wish">✨ Your wish is on its way to the stars ✨</p>`
+          :allOut?html`<p className="script text-3xl text-pink-200 wish">All candles out — now make a wish! 🌟</p>`
+          :html`<p className="text-sm text-purple-200">${lit.filter(Boolean).length} candle(s) glowing</p>`}
+        </div>
+        <div className="flex flex-wrap gap-4 justify-center">
+          <button className="btn" onClick=${makeWish}>Make a Wish ✨</button>
+          <button className="btn" style=${{background:'linear-gradient(135deg,#f6d27a,#ff9ccc)',color:'#4a1d6e'}} onClick=${()=>burst(110)}>Confetti 🎊</button>
+          <button className="btn" style=${{background:'linear-gradient(135deg,#a78bfa,#7c3aed)'}} onClick=${()=>{for(let i=0;i<4;i++)setTimeout(()=>burst(14),i*250)}}>Send Hearts 💖</button>
+        </div>
+        <div className="flex justify-center gap-3 sm:gap-6 mt-12 text-5xl sm:text-6xl serif gold" aria-label="Celebration">
+          ${['3','2','1','🎉'].map((n,i)=>html`<span key=${i} className="bob" style=${{animationDelay:i*.3+'s'}}>${n}</span>`)}
+        </div>
+      <//>
+    </main>
+
+    <section className="relative z-10 min-h-screen flex items-center justify-center text-center p-6" style=${{background:'radial-gradient(circle at 50% 40%,rgba(246,210,122,.28),transparent 60%)'}}>
+      <div className="glass rounded-[2rem] p-8 sm:p-14 max-w-2xl">
+        <div className="text-6xl mb-4 bob">🎂</div>
+        <h2 className="serif text-3xl sm:text-5xl font-extrabold gold leading-tight mb-5">Happy Birthday Once Again, Renuka! ❤️</h2>
+        <p className="script text-3xl text-yellow-100 mb-6">Keep smiling, keep shining and stay blessed forever.</p>
+        <p className="text-pink-200 text-lg mb-8">From your loving brother ❤️</p>
+        <button className="btn text-lg" onClick=${again}>Celebrate Again 🎉</button>
+      </div>
+    </section>
+  </div>`;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
+</script>
+</body>
+</html>
